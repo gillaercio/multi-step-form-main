@@ -1,15 +1,17 @@
-body {
-  background-color: olive;
+body{
+  min-height:100vh;
+  display:grid;
+  background:var(--blue-100);
 }
 
 .multi-step-form {
   display: grid;
   justify-self: center;
-  align-items: center;
+  /* align-items: center; */
   width: min(100%, 37.5rem);
+  /* min-height: 100vh; */
   font-family: var(--ubuntu);
-  background-color: var(--blue-100);
-  /* border: 1px solid red; */
+  /* background-color: var(--blue-100); */
 }
 
 .sidebar {
@@ -28,11 +30,8 @@ body {
 
 .nav-step {
   display: grid;
-  /* align-items: center; */
   justify-content: center;
-  /* padding: 1rem; */
   list-style: none;
-  /* border: 1px solid red; */
 }
 
 .step-number {
@@ -66,12 +65,18 @@ body {
   border-radius: 1rem;
   position: relative;
   top: -5rem;
-  box-shadow: 0 1px 20px var(--blue-100);
+  box-shadow: 0 8px 24px var(--blue-100);
 }
 
 .step {
+  display: none;
+}
+
+.step.active {
   display: grid;
   gap: 2rem;
+
+  /* align-content: start; */
 }
 
 .form__title,
@@ -107,29 +112,15 @@ body {
 .form__group input::placeholder {
   font-size: var(--txt-xs);
   font-weight: var(--fw-bold);
+  color: var(--grey-500);
 }
 
 .form__navigation {
   display: grid;
   align-items: center;
-  width: 37.48rem;
-  height: 9rem;
-  padding-inline: 2.3rem;
+  margin-top: auto;
+  /* padding-inline: 2.3rem; */
   background-color: var(--white);
-  position: absolute;
-  bottom: -12rem;
-  left: -2.6rem;
-  z-index: 100;
-}
-
-.form--info .button--primary {
-  display: grid;
-  justify-self: end;
-}
-
-.form__navigation:not(.form--info) {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12rem;
   /* border: 1px solid red; */
 }
 
@@ -137,7 +128,7 @@ body {
   align-items: center;
   width: 10rem;
   height: 4rem;
-  padding: 0.6rem 1.4rem;
+  /* padding: 0.6rem 1.4rem; */
   font-size: var(--txt-sm);
   font-weight: var(--fw-medium);
   border-radius: 0.5rem;
@@ -146,13 +137,22 @@ body {
 }
 
 .button--primary {
+  display: grid;
+  justify-self: end;
   color: var(--blue-50);
   background-color: var(--blue-950);
 }
 
 .button--back {
+  display: none;
   color: var(--grey-500);
   background-color: transparent;
+}
+
+.button--confirm {
+  display: none;
+  color: var(--blue-50);
+  background-color: var(--purple-600);
 }
 
 .plans {
@@ -162,7 +162,6 @@ body {
 
 .plan {
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: auto auto 1fr;
   gap: 1rem;
   align-items: center;
@@ -184,15 +183,10 @@ body {
   border-width: 0;
 }
 
-/* .plan__img {
-  border: 1px solid red;
-} */
-
 .plan__info {
   display: grid;
   justify-self: start;
   gap: 0.5rem;
-  /* border: 1px solid red; */
 }
 
 .plan__type {
@@ -237,7 +231,6 @@ body {
 .addon {
   display: grid;
   grid-auto-flow: column;
-  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: auto 1fr auto;
   gap: 1rem;
   align-items: center;
@@ -252,10 +245,6 @@ body {
 
 .addon__info {
   display: grid;
-  /* justify-content: start; */
-  /* width: 16rem; */
-  /* margin-right: 2rem; */
-  /* border: 1px solid red; */
 }
 
 .addon__service {
@@ -292,7 +281,8 @@ body {
 }
 
 .confirmation {
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-auto-flow: row;
   gap: 1rem;
   justify-self: center;
@@ -307,8 +297,3 @@ body {
   justify-self: center;
   width: 5rem;
 }
-
-/* .step:not(.active),
-.confirmation {
-  display: none;
-} */
