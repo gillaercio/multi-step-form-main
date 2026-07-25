@@ -1,6 +1,7 @@
 body{
   min-height:100vh;
   display:grid;
+  place-items: center;
   background:var(--blue-100);
 }
 
@@ -9,7 +10,6 @@ body{
   justify-self: center;
   /* align-items: center; */
   width: min(100%, 37.5rem);
-  /* min-height: 100vh; */
   font-family: var(--ubuntu);
   /* background-color: var(--blue-100); */
 }
@@ -58,14 +58,18 @@ body{
 
 .form {
   display: grid;
-  width: 86%;
+  gap: 4rem;
+}
+
+.steps {
   justify-self: center;
+  width: 90%;
   padding: 2.2rem 2rem;
   background-color: var(--white);
   border-radius: 1rem;
-  position: relative;
-  top: -5rem;
   box-shadow: 0 8px 24px var(--blue-100);
+  position: relative;
+  top: -5.4rem;
 }
 
 .step {
@@ -76,7 +80,7 @@ body{
   display: grid;
   gap: 2rem;
 
-  /* align-content: start; */
+  align-content: start;
 }
 
 .form__title,
@@ -88,6 +92,7 @@ body{
 
 .form__description {
   font-size: var(--txt-md);
+  font-weight: var(--fw-medium);
   color: var(--grey-500);
   line-height: var(--line-height-md);
 }
@@ -119,16 +124,15 @@ body{
   display: grid;
   align-items: center;
   margin-top: auto;
-  /* padding-inline: 2.3rem; */
+  padding: 1.8rem;
   background-color: var(--white);
-  /* border: 1px solid red; */
 }
 
 .button {
   align-items: center;
   width: 10rem;
   height: 4rem;
-  /* padding: 0.6rem 1.4rem; */
+  padding: 0.6rem 1.4rem;
   font-size: var(--txt-sm);
   font-weight: var(--fw-medium);
   border-radius: 0.5rem;
@@ -281,16 +285,21 @@ body{
 }
 
 .confirmation {
-  /* display: grid; */
   display: none;
   grid-auto-flow: row;
-  gap: 1rem;
+  gap: 2rem;
   justify-self: center;
   width: 90%;
-  padding: 2.2rem;
+  padding: 6.7rem 2.2rem;
   text-align: center;
   background-color: var(--white);
   border-radius: 0.8rem;
+  position: relative;
+  top: -5.4rem;
+}
+
+.confirmation.active {
+  display: grid;
 }
 
 .confirmation__img {
