@@ -8,10 +8,8 @@ body{
 .multi-step-form {
   display: grid;
   justify-self: center;
-  /* align-items: center; */
   width: min(100%, 37.5rem);
   font-family: var(--ubuntu);
-  /* background-color: var(--blue-100); */
 }
 
 .sidebar {
@@ -167,15 +165,14 @@ body{
 .plan {
   display: grid;
   grid-template-columns: auto auto 1fr;
-  gap: 1rem;
+  gap: 1.8rem;
   align-items: center;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--purple-600);
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--purple-200);
   border-radius: 0.5rem;
 }
 
 .plan input[type=radio] {
-  /* appearance: none; */
   position: absolute;
   width: 1px;
   height: 1px;
@@ -185,6 +182,11 @@ body{
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.plan:has(input[type="radio"]:checked) {
+  border-color: var(--purple-600);
+  background-color: var(--blue-100);
 }
 
 .plan__info {
@@ -201,30 +203,69 @@ body{
 
 .plan__price {
   font-size: var(--txt-xs);
+  font-weight: var(--fw-medium);
   color: var(--grey-500);
 }
 
 .plan__bonus {
   display: none;
   font-size: var(--txt-xs);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   color: var(--blue-950);
 }
 
 .billing {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
   padding: 1rem;
   font-size: var(--txt-sm);
   font-weight: var(--fw-medium);
+  color: var(--grey-500);
   background-color: var(--blue-100);
   border-radius: 0.6rem;
 }
 
-.billing__option {
-  display: grid;
-  align-self: center;
-  justify-content: center;
+.switch {
+  display: inline-block;
+  width: 45px;
+  height: 24px;
+  position: relative;
+}
+
+.switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.slider {
+  background-color: var(--blue-950);
+  border-radius: 999px;
+  position: absolute;
+  inset: 0;
+}
+
+.slider::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background-color: var(--white);
+    border-radius: 50%;
+    position: absolute;
+    transition: transform .3s ease;
+}
+
+.switch:hover .slider {
+  outline: 5px solid var(--purple-200);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(21px);
 }
 
 .addons {
@@ -241,14 +282,22 @@ body{
   padding: 1.5rem;
   border: 1.5px solid var(--purple-200);
   border-radius: 0.8rem;
+  cursor: pointer;
 }
 
 .addon input {
-  justify-self: start;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--purple-600);
+}
+
+.addon:has(input[type="checkbox"]:checked) {
+  border-color: var(--purple-600);
 }
 
 .addon__info {
   display: grid;
+  gap: 0.3rem;
 }
 
 .addon__service {
