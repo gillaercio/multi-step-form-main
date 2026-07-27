@@ -118,43 +118,13 @@ body{
   color: var(--grey-500);
 }
 
-.form__navigation {
-  display: grid;
-  align-items: center;
-  margin-top: auto;
-  padding: 1.8rem;
-  background-color: var(--white);
+.form__group input:focus-visible {
+  outline: 2px solid var(--purple-600);
+  border-color: var(--purple-600);
 }
 
-.button {
-  align-items: center;
-  width: 10rem;
-  height: 4rem;
-  padding: 0.6rem 1.4rem;
-  font-size: var(--txt-sm);
-  font-weight: var(--fw-medium);
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-}
-
-.button--primary {
-  display: grid;
-  justify-self: end;
-  color: var(--blue-50);
-  background-color: var(--blue-950);
-}
-
-.button--back {
-  display: none;
-  color: var(--grey-500);
-  background-color: transparent;
-}
-
-.button--confirm {
-  display: none;
-  color: var(--blue-50);
-  background-color: var(--purple-600);
+.form__group input:hover {
+  border-color: var(--purple-600);
 }
 
 .plans {
@@ -170,6 +140,10 @@ body{
   padding: 0.8rem 1rem;
   border: 1px solid var(--purple-200);
   border-radius: 0.5rem;
+}
+
+.plan:hover {
+  border-color: var(--purple-600);
 }
 
 .plan input[type=radio] {
@@ -241,6 +215,10 @@ body{
   opacity: 0;
 }
 
+.switch input:focus-visible + .slider {
+  outline: 3px solid var(--purple-200);
+}
+
 .slider {
   background-color: var(--blue-950);
   border-radius: 999px;
@@ -261,7 +239,7 @@ body{
 }
 
 .switch:hover .slider {
-  outline: 5px solid var(--purple-200);
+  outline: 3px solid var(--purple-200);
 }
 
 .switch input:checked + .slider::before {
@@ -285,6 +263,10 @@ body{
   cursor: pointer;
 }
 
+.addon:hover {
+  border-color: var(--purple-600);
+}
+
 .addon input {
   width: 18px;
   height: 18px;
@@ -292,6 +274,10 @@ body{
 }
 
 .addon:has(input[type="checkbox"]:checked) {
+  border-color: var(--purple-600);
+}
+
+.addon:has(input[type="checkbox"]:focus-visible) {
   border-color: var(--purple-600);
 }
 
@@ -331,6 +317,75 @@ body{
   font-size: var(--txt-sm);
   font-weight: var(--fw-medium);
   color: var(--grey-500);
+}
+
+.form__navigation {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding: 1.8rem;
+  background-color: var(--white);
+}
+
+.button {
+  align-items: center;
+  width: 10rem;
+  height: 4rem;
+  padding: 0.6rem 1.4rem;
+  font-size: var(--txt-sm);
+  font-weight: var(--fw-bold);
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.button--primary {
+  /* display: none; */
+  display: grid;
+  justify-self: end;
+  color: var(--blue-50);
+  background-color: var(--blue-950);
+}
+
+.button--primary:focus-visible {
+  outline: 2px solid var(--purple-600);
+  /* border-color: var(--purple-600); */
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button--back {
+  display: none;
+  color: var(--grey-500);
+  background-color: transparent;
+}
+
+.button--back:hover {
+  color: var(--blue-950);
+}
+
+.button--back:focus-visible {
+  outline: 2px solid var(--blue-300);
+  /* border-color: var(--blue-300); */
+}
+
+.button--confirm {
+  display: none;
+  color: var(--blue-50);
+  background-color: var(--purple-600);
+}
+
+.button--confirm:focus-visible {
+  outline: 2px solid var(--blue-950);
+  /* border-color: var(--blue-950); */
 }
 
 .confirmation {
