@@ -163,6 +163,10 @@ body{
   background-color: var(--blue-100);
 }
 
+.plan:has(input[type="radio"]:focus-visible) {
+  outline: 2px solid var(--purple-600);
+}
+
 .plan__info {
   display: grid;
   justify-self: start;
@@ -210,13 +214,16 @@ body{
 }
 
 .switch input {
-  width: 0;
-  height: 0;
-  opacity: 0;
+  position:absolute;
+  opacity:0;
 }
 
 .switch input:focus-visible + .slider {
   outline: 3px solid var(--purple-200);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(21px);
 }
 
 .slider {
@@ -240,10 +247,6 @@ body{
 
 .switch:hover .slider {
   outline: 3px solid var(--purple-200);
-}
-
-.switch input:checked + .slider::before {
-  transform: translateX(21px);
 }
 
 .addons {
@@ -275,10 +278,11 @@ body{
 
 .addon:has(input[type="checkbox"]:checked) {
   border-color: var(--purple-600);
+  background-color: var(--blue-100);
 }
 
 .addon:has(input[type="checkbox"]:focus-visible) {
-  border-color: var(--purple-600);
+  outline: 2px solid var(--purple-600);
 }
 
 .addon__info {
@@ -341,12 +345,15 @@ body{
   cursor: pointer;
 }
 
+.button:active {
+  transform: scale(0.98);
+}
+
 .button:hover {
   opacity: 0.9;
 }
 
 .button--primary {
-  /* display: none; */
   display: grid;
   justify-self: end;
   color: var(--blue-50);
@@ -355,15 +362,9 @@ body{
 
 .button--primary:focus-visible {
   outline: 2px solid var(--purple-600);
-  /* border-color: var(--purple-600); */
-}
-
-.button:active {
-  transform: scale(0.98);
 }
 
 .button--back {
-  display: none;
   color: var(--grey-500);
   background-color: transparent;
 }
@@ -374,18 +375,15 @@ body{
 
 .button--back:focus-visible {
   outline: 2px solid var(--blue-300);
-  /* border-color: var(--blue-300); */
 }
 
 .button--confirm {
-  display: none;
   color: var(--blue-50);
   background-color: var(--purple-600);
 }
 
 .button--confirm:focus-visible {
   outline: 2px solid var(--blue-950);
-  /* border-color: var(--blue-950); */
 }
 
 .confirmation {
@@ -409,4 +407,8 @@ body{
 .confirmation__img {
   justify-self: center;
   width: 5rem;
+}
+
+.hidden {
+  display: none;
 }
