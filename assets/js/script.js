@@ -1,4 +1,4 @@
-const navSteps = document.querySelectorAll(".nav-step");
+const navSteps = document.querySelectorAll(".step-number");
 const formSteps = document.querySelectorAll(".step");
 const form = document.querySelector(".form");
 const backButton = document.querySelector(".button--back");
@@ -6,12 +6,17 @@ const nextButton = document.querySelector(".button--primary");
 const confirmButton = document.querySelector(".button--confirm");
 const confirmation = document.querySelector(".confirmation");
 
+const plans = document.querySelectorAll('input[name="plan"]');
+const billingSwitch = document.querySelectorAll('input[type="checkbox"]');
+
 let currentStep = 0;
 
 function showStep(stepIndex) {
   clearActiveSteps();
+  clearActiveNav();
 
   formSteps[stepIndex].classList.add("active");
+  navSteps[stepIndex].classList.add("active");
 }
 
 nextButton.addEventListener("click", () => {
@@ -51,3 +56,28 @@ function clearActiveSteps() {
     step.classList.remove("active");
   });
 };
+
+function clearActiveNav() {
+  navSteps.forEach(navStep => {
+    navStep.classList.remove("active");
+  });
+};
+
+plans.forEach(planInput => {
+  planInput.addEventListener("change", () => {
+    // console.log(planInput.value);
+    const selectedPlan = planInput.value;
+    console.log(selectedPlan);
+  })
+});
+
+billingSwitch.forEach(billingSwitchInput => {
+  billingSwitchInput.addEventListener("change", () => {
+    // console.log(plansTimeInput.value);
+    if (billingSwitchInput.checked) {
+      console.log("anual");
+    } else {
+      console.log("mensal");
+    }
+  });
+});
