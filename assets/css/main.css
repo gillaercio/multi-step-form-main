@@ -186,7 +186,7 @@ body{
 }
 
 .plan__bonus {
-  display: none;
+  /* display: none; */
   font-size: var(--txt-xs);
   font-weight: var(--fw-medium);
   color: var(--blue-950);
@@ -302,16 +302,17 @@ body{
   color: var(--grey-500);
 }
 
-.addon__price-monthly {
+/* .addon__price-monthly {
   justify-self: end;
-}
+} */
 
-.addon__price-yearly {
+/* .addon__price-yearly {
   display: none;
-}
+} */
 
 .addon__price-monthly,
 .addon__price-yearly {
+  justify-self: end;
   font-size: var(--txt-xs);
   font-weight: var(--fw-medium);
   color: var(--purple-600);

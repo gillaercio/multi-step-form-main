@@ -7,7 +7,12 @@ const confirmButton = document.querySelector(".button--confirm");
 const confirmation = document.querySelector(".confirmation");
 
 const plans = document.querySelectorAll('input[name="plan"]');
-const billingSwitch = document.querySelectorAll('input[type="checkbox"]');
+const billingSwitch = document.querySelector('input[type="checkbox"]');
+
+const planPrices = document.querySelectorAll(".plan__price");
+const planBonuses = document.querySelectorAll(".plan__bonus");
+const addonPriceMonths = document.querySelectorAll(".addon__price-monthly");
+const addonPriceYears = document.querySelectorAll(".addon__price-yearly");
 
 let currentStep = 0;
 
@@ -65,19 +70,42 @@ function clearActiveNav() {
 
 plans.forEach(planInput => {
   planInput.addEventListener("change", () => {
-    // console.log(planInput.value);
     const selectedPlan = planInput.value;
     console.log(selectedPlan);
   })
 });
 
-billingSwitch.forEach(billingSwitchInput => {
-  billingSwitchInput.addEventListener("change", () => {
-    // console.log(plansTimeInput.value);
-    if (billingSwitchInput.checked) {
-      console.log("anual");
+billingSwitch.addEventListener("change", () => {
+  if (billingSwitch.checked) {
+    planBonuses.forEach(planBonus => {
+      planBonus.classList.remove("hidden");
+    })
+
+    addonPriceMonths.forEach(addonPriceMonth => {
+      addonPriceMonth.classList.add("hidden");
+    })
+    addonPriceYears.forEach(addonPriceYear => {
+      addonPriceYear.classList.remove("hidden");
+    })
+  } else {
+    planBonuses.forEach(planBonus => {
+      planBonus.classList.add("hidden");
+    });
+
+    addonPriceYears.forEach(addonPriceYear => {
+      addonPriceYear.classList.add("hidden");
+    })
+
+    addonPriceMonths.forEach(addonPriceMonth => {
+      addonPriceMonth.classList.remove("hidden");
+    })
+  }
+
+  planPrices.forEach((price) => {
+    if (billingSwitch.checked) {
+      price.textContent = `$${price.dataset.yearly}/yr`;
     } else {
-      console.log("mensal");
+      price.textContent = `$${price.dataset.monthly}/mo`;
     }
-  });
+  })
 });
