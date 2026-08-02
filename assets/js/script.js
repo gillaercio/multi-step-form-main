@@ -11,10 +11,15 @@ const billingSwitch = document.querySelector('input[type="checkbox"]');
 
 const planPrices = document.querySelectorAll(".plan__price");
 const planBonuses = document.querySelectorAll(".plan__bonus");
+
+const addons = document.querySelectorAll('.addon input[type="checkbox"]');
 const addonPriceMonths = document.querySelectorAll(".addon__price-monthly");
 const addonPriceYears = document.querySelectorAll(".addon__price-yearly");
 
 let currentStep = 0;
+let selectedPlan = "arcade";
+let selectedBilling = "monthly";
+let selectedAddons = [];
 
 function showStep(stepIndex) {
   clearActiveSteps();
@@ -37,7 +42,7 @@ nextButton.addEventListener("click", () => {
     nextButton.classList.add("hidden");
     confirmButton.classList.remove("hidden");
   }
-})
+});
 
 backButton.addEventListener("click", () => {
   currentStep--;
@@ -68,44 +73,76 @@ function clearActiveNav() {
   });
 };
 
-plans.forEach(planInput => {
-  planInput.addEventListener("change", () => {
-    const selectedPlan = planInput.value;
-    console.log(selectedPlan);
-  })
-});
-
-billingSwitch.addEventListener("change", () => {
-  if (billingSwitch.checked) {
-    planBonuses.forEach(planBonus => {
-      planBonus.classList.remove("hidden");
-    })
-
-    addonPriceMonths.forEach(addonPriceMonth => {
-      addonPriceMonth.classList.add("hidden");
-    })
-    addonPriceYears.forEach(addonPriceYear => {
-      addonPriceYear.classList.remove("hidden");
-    })
-  } else {
-    planBonuses.forEach(planBonus => {
-      planBonus.classList.add("hidden");
+function saveSelectedPlan() {
+  plans.forEach(planInput => {
+    planInput.addEventListener("change", () => {
+      selectedPlan = planInput.value;
+      console.log(selectedPlan);
     });
+  });
+}
 
-    addonPriceYears.forEach(addonPriceYear => {
-      addonPriceYear.classList.add("hidden");
-    })
-
-    addonPriceMonths.forEach(addonPriceMonth => {
-      addonPriceMonth.classList.remove("hidden");
-    })
-  }
-
-  planPrices.forEach((price) => {
+function handleBillingChange() {
+  billingSwitch.addEventListener("change", () => {
     if (billingSwitch.checked) {
-      price.textContent = `$${price.dataset.yearly}/yr`;
+      planBonuses.forEach(planBonus => {
+        planBonus.classList.remove("hidden");
+      });
+
+      addonPriceMonths.forEach(addonPriceMonth => {
+        addonPriceMonth.classList.add("hidden");
+      });
+      addonPriceYears.forEach(addonPriceYear => {
+        addonPriceYear.classList.remove("hidden");
+      });
+      selectedBilling = "yearly";
     } else {
-      price.textContent = `$${price.dataset.monthly}/mo`;
+      planBonuses.forEach(planBonus => {
+        planBonus.classList.add("hidden");
+      });
+
+      addonPriceYears.forEach(addonPriceYear => {
+        addonPriceYear.classList.add("hidden");
+      });
+      addonPriceMonths.forEach(addonPriceMonth => {
+        addonPriceMonth.classList.remove("hidden");
+      });
+      selectedBilling = "monthly";
     }
-  })
-});
+    console.log(selectedBilling);
+
+    planPrices.forEach((price) => {
+      if (billingSwitch.checked) {
+        price.textContent = `$${price.dataset.yearly}/yr`;
+      } else {
+        price.textContent = `$${price.dataset.monthly}/mo`;
+      }
+    })
+  });
+}
+
+function handleAddonChange() {
+  addons.forEach(addon => {
+    addon.addEventListener("change", () => {
+      if (addon.checked) {
+        selectedAddons.push(addon.id);
+        console.log(selectedAddons);
+      } else {
+        selectedAddons = selectedAddons.filter(item => item !== addon.id);
+        console.log(selectedAddons);
+      }
+    })
+  });
+}
+
+// function checkState() {
+//   console.log("Plan:", selectedPlan);
+//   console.log("Billing:", selectedBilling);
+//   console.log("Addons:", selectedAddons);
+// }
+
+saveSelectedPlan();
+handleBillingChange();
+handleAddonChange();
+
+// checkState();

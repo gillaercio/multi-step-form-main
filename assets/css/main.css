@@ -302,20 +302,35 @@ body{
   color: var(--grey-500);
 }
 
-/* .addon__price-monthly {
-  justify-self: end;
-} */
-
-/* .addon__price-yearly {
-  display: none;
-} */
-
 .addon__price-monthly,
 .addon__price-yearly {
   justify-self: end;
   font-size: var(--txt-xs);
   font-weight: var(--fw-medium);
   color: var(--purple-600);
+}
+
+.summary__box {
+  padding: 2rem;
+  background-color: var(--blue-100);
+  border-radius: 0.6rem;
+}
+
+.summary__change {
+  font-family: var(--ubuntu);
+  color: var(--purple-600);
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.summary__change:hover {
+  color: var(--grey-500);
+}
+
+.summary__box hr {
+  margin-block: 2rem;
 }
 
 .summary__total {
