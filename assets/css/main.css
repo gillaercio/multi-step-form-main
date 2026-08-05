@@ -316,9 +316,30 @@ body{
   border-radius: 0.6rem;
 }
 
+.summary__box-plan,
+.summary__addons {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary__plan {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+}
+
+.summary__plan,
+.summary__info-value {
+  font-size: var(--txt-sm);
+  font-weight: var(--fw-bold);
+  color: var(--blue-950);
+}
+
 .summary__change {
-  font-family: var(--ubuntu);
-  color: var(--purple-600);
+  font-size: var(--txt-xs);
+  color: var(--grey-500);
   text-decoration: underline;
   background-color: transparent;
   border: none;
@@ -326,14 +347,26 @@ body{
 }
 
 .summary__change:hover {
-  color: var(--grey-500);
+  color: var(--purple-600);
 }
 
 .summary__box hr {
   margin-block: 2rem;
 }
 
+.summary__addons {
+  display: grid;
+  font-size: var(--txt-xs);
+  color: var(--grey-500);
+  line-height: 2.5rem;
+}
+
+.summary__addons-value {
+  color: var(--blue-950);
+}
+
 .summary__total {
+  padding-inline: 2rem;
   font-size: var(--txt-sm);
   font-weight: var(--fw-medium);
   color: var(--grey-500);

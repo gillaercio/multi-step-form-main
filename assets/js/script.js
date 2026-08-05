@@ -16,6 +16,13 @@ const addons = document.querySelectorAll('.addon input[type="checkbox"]');
 const addonPriceMonths = document.querySelectorAll(".addon__price-monthly");
 const addonPriceYears = document.querySelectorAll(".addon__price-yearly");
 
+const summaryPlan = document.querySelector(".summary__info");
+const summaryPlanValue = document.querySelector(".summary__info-value");
+
+const summaryAddon = document.querySelector(".summary__addons-description");
+const summaryAddonValue = document.querySelector(".summary__addons-value");
+const summaryTotal = document.querySelector(".summary__total");
+
 let currentStep = 0;
 let selectedPlan = "arcade";
 let selectedBilling = "monthly";
@@ -41,6 +48,7 @@ nextButton.addEventListener("click", () => {
   if (currentStep === formSteps.length - 1) {
     nextButton.classList.add("hidden");
     confirmButton.classList.remove("hidden");
+    renderSummary();
   }
 });
 
@@ -135,6 +143,62 @@ function handleAddonChange() {
   });
 }
 
+const plansData = {
+  arcade: {
+    name: "Arcade",
+    monthly: 9,
+    yearly: 90
+  },
+  advanced: {
+    name: "Advanced",
+    monthly: 12,
+    yearly: 120
+  },
+  pro: {
+    name: "Pro",
+    monthly: 15,
+    yearly: 150
+  }
+};
+
+const addonsData = {
+  online: {
+    name: "Online service",
+    monthly: 1,
+    yearly: 10
+  },
+  storage: {
+    name: "Larger storage",
+    monthly: 2,
+    yearly: 20
+  },
+  custom: {
+    name: "Customizable Profile",
+    monthly: 2,
+    yearly: 20
+  }
+}
+
+function renderSummary() {
+  summaryAddon.textContent = '';
+  summaryAddonValue.textContent = '';
+  if (billingSwitch.checked) {
+    summaryPlan.textContent = plansData[selectedPlan].name + " (Yearly)";
+    summaryPlanValue.textContent = `$${plansData[selectedPlan].yearly}/yr`;
+    selectedAddons.forEach(addon => {
+      summaryAddonValue.innerHTML += `$${addonsData[addon].yearly}/yr<br>`;
+      summaryAddon.innerHTML += `${addonsData[addon].name}<br>`;
+    })
+  } else {
+    summaryPlan.textContent = plansData[selectedPlan].name + " (Monthly)";
+    summaryPlanValue.textContent = `$${plansData[selectedPlan].monthly}/mo`;
+    selectedAddons.forEach(addon => {
+      summaryAddonValue.innerHTML += `$${addonsData[addon].monthly}/mo<br>`;
+      summaryAddon.innerHTML += `${addonsData[addon].name}<br>`;
+    })
+  }
+}
+
 // function checkState() {
 //   console.log("Plan:", selectedPlan);
 //   console.log("Billing:", selectedBilling);
@@ -144,5 +208,5 @@ function handleAddonChange() {
 saveSelectedPlan();
 handleBillingChange();
 handleAddonChange();
-
+// renderSummary();
 // checkState();
