@@ -18,10 +18,9 @@ const addonPriceYears = document.querySelectorAll(".addon__price-yearly");
 
 const summaryPlan = document.querySelector(".summary__info");
 const summaryPlanValue = document.querySelector(".summary__info-value");
-
-const summaryAddon = document.querySelector(".summary__addons-description");
-const summaryAddonValue = document.querySelector(".summary__addons-value");
+const summaryAddon = document.querySelector(".summary__addons");
 const summaryTotal = document.querySelector(".summary__total");
+const changeButton = document.querySelector(".summary__change");
 
 let currentStep = 0;
 let selectedPlan = "arcade";
@@ -49,6 +48,7 @@ nextButton.addEventListener("click", () => {
     nextButton.classList.add("hidden");
     confirmButton.classList.remove("hidden");
     renderSummary();
+    renderTotal();
   }
 });
 
@@ -67,7 +67,7 @@ backButton.addEventListener("click", () => {
 confirmButton.addEventListener("click", () => {
   form.classList.add("hidden");
   confirmation.classList.add("active");
-})
+});
 
 function clearActiveSteps() {
   formSteps.forEach(step => {
@@ -143,6 +143,17 @@ function handleAddonChange() {
   });
 }
 
+function handleChangePlan() {
+  changeButton.addEventListener("click", () => {
+    currentStep = 1;
+
+    showStep(currentStep);
+
+    nextButton.classList.remove("hidden");
+    confirmButton.classList.add("hidden");
+  });
+}
+
 const plansData = {
   arcade: {
     name: "Arcade",
@@ -180,22 +191,63 @@ const addonsData = {
 }
 
 function renderSummary() {
-  summaryAddon.textContent = '';
-  summaryAddonValue.textContent = '';
+  summaryAddon.innerHTML = '';
+
   if (billingSwitch.checked) {
     summaryPlan.textContent = plansData[selectedPlan].name + " (Yearly)";
     summaryPlanValue.textContent = `$${plansData[selectedPlan].yearly}/yr`;
     selectedAddons.forEach(addon => {
-      summaryAddonValue.innerHTML += `$${addonsData[addon].yearly}/yr<br>`;
-      summaryAddon.innerHTML += `${addonsData[addon].name}<br>`;
-    })
+      summaryAddon.innerHTML += `
+        <div class="summary__addon-item">
+          <span>${addonsData[addon].name}</span>
+          <span class="summary__addon-value">+$${addonsData[addon].yearly}/yr</span>
+        </div>
+      `;
+    });
   } else {
     summaryPlan.textContent = plansData[selectedPlan].name + " (Monthly)";
     summaryPlanValue.textContent = `$${plansData[selectedPlan].monthly}/mo`;
     selectedAddons.forEach(addon => {
-      summaryAddonValue.innerHTML += `$${addonsData[addon].monthly}/mo<br>`;
-      summaryAddon.innerHTML += `${addonsData[addon].name}<br>`;
-    })
+      summaryAddon.innerHTML += `
+        <div class="summary__addon-item">
+          <span>${addonsData[addon].name}</span>
+          <span class="summary__addon-value">+$${addonsData[addon].monthly}/mo</span>
+        </div>
+      `;
+    });
+  }
+}
+
+function renderTotal() {
+  summaryTotal.innerHTML = '';
+  let total = 0;
+
+  if (billingSwitch.checked) {
+    total = plansData[selectedPlan].yearly;
+
+    selectedAddons.forEach(addon => {
+      total += addonsData[addon].yearly;
+    });
+
+    summaryTotal.innerHTML = `
+    <div class="summary__total-item">
+      <span class="summary__total-description">Total (per year)</span>
+      <span class="summary__total-value">$${total}/yr</span>
+    </div>
+    `;
+  } else {
+    total = plansData[selectedPlan].monthly;
+
+    selectedAddons.forEach(addon => {
+      total += addonsData[addon].monthly;
+    });
+
+    summaryTotal.innerHTML = `
+    <div class="summary__total-item">
+      <span class="summary__total-description">Total (per month)</span>
+      <span class="summary__total-value">$${total}/mo</span>
+    </div>
+    `;
   }
 }
 
@@ -208,5 +260,6 @@ function renderSummary() {
 saveSelectedPlan();
 handleBillingChange();
 handleAddonChange();
+handleChangePlan();
 // renderSummary();
 // checkState();

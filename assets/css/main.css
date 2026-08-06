@@ -316,8 +316,7 @@ body{
   border-radius: 0.6rem;
 }
 
-.summary__box-plan,
-.summary__addons {
+.summary__box-plan {
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
@@ -355,13 +354,18 @@ body{
 }
 
 .summary__addons {
-  display: grid;
   font-size: var(--txt-xs);
   color: var(--grey-500);
   line-height: 2.5rem;
 }
 
-.summary__addons-value {
+.summary__addon-item {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.summary__addon-value {
   color: var(--blue-950);
 }
 
@@ -370,6 +374,17 @@ body{
   font-size: var(--txt-sm);
   font-weight: var(--fw-medium);
   color: var(--grey-500);
+}
+
+.summary__total-item {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.summary__total-value {
+  font-size: var(--txt-md);
+  color: var(--purple-600);
 }
 
 .form__navigation {
