@@ -211,7 +211,6 @@ body{
 }
 
 .plan__bonus {
-  /* display: none; */
   font-size: var(--txt-xs);
   font-weight: var(--fw-medium);
   color: var(--blue-950);

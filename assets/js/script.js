@@ -39,20 +39,35 @@ function showStep(stepIndex) {
   navSteps[stepIndex].classList.add("active");
 }
 
+function validateRequiredField(input) {
+  if (input.value.trim() === "") {
+    showError(input);
+    input.classList.add("input-error");
+
+    return false;
+  }
+
+  clearError(input);
+  input.classList.remove("input-error");
+
+  return true;
+}
+
 function validatePersonalInfo() {
   let isValid = true;
 
-  if (nameInput.value.trim() === "") {
-    showError(nameInput);
-    nameInput.classList.add("input-error");
+  if (!validateRequiredField(nameInput)) {
     isValid = false;
-  } else {
-    clearError(nameInput);
-    nameInput.classList.remove("input-error");
   }
 
-  if (emailInput.value.trim() === "") {
-    showError(emailInput);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!validateRequiredField(emailInput)){
+    isValid = false;
+  } else if (!emailRegex.test(emailInput.value.trim())) {
+    showError(
+      emailInput,
+      "Please enter a valid email address"
+    );
     emailInput.classList.add("input-error");
     isValid = false;
   } else {
@@ -60,21 +75,17 @@ function validatePersonalInfo() {
     emailInput.classList.remove("input-error");
   }
 
-  if (phoneInput.value.trim() === "") {
-    showError(phoneInput);
-    phoneInput.classList.add("input-error");
+  if (!validateRequiredField(phoneInput)) {
     isValid = false;
-  } else {
-    clearError(phoneInput);
-    phoneInput.classList.remove("input-error");
   }
 
   return isValid;
 }
 
-function showError(input) {
+function showError(input, message = "This field is required") {
   const formGroup = input.parentElement;
   const errorMessage = formGroup.querySelector(".error-message");
+  errorMessage.textContent = message;
   errorMessage.classList.add("active");
 }
 
@@ -140,7 +151,6 @@ function saveSelectedPlan() {
   plans.forEach(planInput => {
     planInput.addEventListener("change", () => {
       selectedPlan = planInput.value;
-      // console.log(selectedPlan);
     });
   });
 }
@@ -172,7 +182,6 @@ function handleBillingChange() {
       });
       selectedBilling = "monthly";
     }
-    // console.log(selectedBilling);
 
     planPrices.forEach((price) => {
       if (billingSwitch.checked) {
@@ -189,10 +198,8 @@ function handleAddonChange() {
     addon.addEventListener("change", () => {
       if (addon.checked) {
         selectedAddons.push(addon.id);
-        // console.log(selectedAddons);
       } else {
         selectedAddons = selectedAddons.filter(item => item !== addon.id);
-        // console.log(selectedAddons);
       }
     })
   });
@@ -306,15 +313,7 @@ function renderTotal() {
   }
 }
 
-// function checkState() {
-//   console.log("Plan:", selectedPlan);
-//   console.log("Billing:", selectedBilling);
-//   console.log("Addons:", selectedAddons);
-// }
-
 saveSelectedPlan();
 handleBillingChange();
 handleAddonChange();
 handleChangePlan();
-// renderSummary();
-// checkState();
