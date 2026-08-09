@@ -6,6 +6,10 @@ const nextButton = document.querySelector(".button--primary");
 const confirmButton = document.querySelector(".button--confirm");
 const confirmation = document.querySelector(".confirmation");
 
+const nameInput = document.querySelector("#name");
+const emailInput = document.querySelector("#email");
+const phoneInput = document.querySelector("#phone");
+
 const plans = document.querySelectorAll('input[name="plan"]');
 const billingSwitch = document.querySelector('input[type="checkbox"]');
 
@@ -35,7 +39,58 @@ function showStep(stepIndex) {
   navSteps[stepIndex].classList.add("active");
 }
 
+function validatePersonalInfo() {
+  let isValid = true;
+
+  if (nameInput.value.trim() === "") {
+    showError(nameInput);
+    nameInput.classList.add("input-error");
+    isValid = false;
+  } else {
+    clearError(nameInput);
+    nameInput.classList.remove("input-error");
+  }
+
+  if (emailInput.value.trim() === "") {
+    showError(emailInput);
+    emailInput.classList.add("input-error");
+    isValid = false;
+  } else {
+    clearError(emailInput);
+    emailInput.classList.remove("input-error");
+  }
+
+  if (phoneInput.value.trim() === "") {
+    showError(phoneInput);
+    phoneInput.classList.add("input-error");
+    isValid = false;
+  } else {
+    clearError(phoneInput);
+    phoneInput.classList.remove("input-error");
+  }
+
+  return isValid;
+}
+
+function showError(input) {
+  const formGroup = input.parentElement;
+  const errorMessage = formGroup.querySelector(".error-message");
+  errorMessage.classList.add("active");
+}
+
+function clearError(input) {
+  const formGroup = input.parentElement;
+  const errorMessage = formGroup.querySelector(".error-message");
+  errorMessage.classList.remove("active");
+}
+
 nextButton.addEventListener("click", () => {
+  if (currentStep === 0) {
+    if (!validatePersonalInfo()) {
+      return;
+    }
+  }
+
   if (currentStep < formSteps.length - 1) {
     currentStep++;
     showStep(currentStep);
@@ -85,7 +140,7 @@ function saveSelectedPlan() {
   plans.forEach(planInput => {
     planInput.addEventListener("change", () => {
       selectedPlan = planInput.value;
-      console.log(selectedPlan);
+      // console.log(selectedPlan);
     });
   });
 }
@@ -117,7 +172,7 @@ function handleBillingChange() {
       });
       selectedBilling = "monthly";
     }
-    console.log(selectedBilling);
+    // console.log(selectedBilling);
 
     planPrices.forEach((price) => {
       if (billingSwitch.checked) {
@@ -134,10 +189,10 @@ function handleAddonChange() {
     addon.addEventListener("change", () => {
       if (addon.checked) {
         selectedAddons.push(addon.id);
-        console.log(selectedAddons);
+        // console.log(selectedAddons);
       } else {
         selectedAddons = selectedAddons.filter(item => item !== addon.id);
-        console.log(selectedAddons);
+        // console.log(selectedAddons);
       }
     })
   });

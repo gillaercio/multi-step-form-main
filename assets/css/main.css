@@ -101,8 +101,6 @@ body{
 }
 
 .form__group label {
-  font-size: var(--txt-xs);
-  font-weight: var(--fw-medium);
   color: var(--blue-950);
 }
 
@@ -125,6 +123,33 @@ body{
 
 .form__group input:hover {
   border-color: var(--purple-600);
+}
+
+.label-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  font-size: var(--txt-xs);
+  font-weight: var(--fw-medium);
+}
+
+.error-message {
+  display: none;
+  font-weight: var(--fw-bold);
+  color: var(--red-500);
+}
+
+.form__group input.input-error {
+  border-color: var(--red-500);
+}
+
+.form__group input.input-error:focus-visible {
+  outline: 2px solid var(--red-500);
+  border-color: var(--red-500);
+}
+
+.error-message.active {
+  display: block;
 }
 
 .plans {
