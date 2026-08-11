@@ -42,7 +42,6 @@ body{
   color: var(--white);
   border: 2px solid var(--blue-300);
   border-radius: 50%;
-  cursor: pointer;
 }
 
 .step-number.active {
@@ -258,15 +257,15 @@ body{
 }
 
 .slider::before {
-    content: "";
-    width: 18px;
-    height: 18px;
-    left: 3px;
-    top: 3px;
-    background-color: var(--white);
-    border-radius: 50%;
-    position: absolute;
-    transition: transform .3s ease;
+  content: "";
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: var(--white);
+  border-radius: 50%;
+  position: absolute;
+  transition: transform .3s ease;
 }
 
 .switch:hover .slider {
@@ -416,7 +415,7 @@ body{
   grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
+  /* margin-top: auto; */
   padding: 1.8rem;
   background-color: var(--white);
 }
@@ -499,4 +498,91 @@ body{
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 700px) {
+  .multi-step-form {
+    grid-template-columns: 274px 1fr;
+    width: min(100%, 94rem);
+    padding: 1.5rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+  }
+
+  .sidebar {
+    height: 50rem;
+    /* height: auto; */
+    padding: 3rem;
+    background: url("/assets/images/bg-sidebar-desktop.svg");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    border-radius: 1rem;
+  }
+
+  .nav-steps {
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2rem;
+    justify-self: start;
+    width: 100%;
+  }
+
+  .nav-step {
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    /* width: 100%; */
+  }
+
+  .step-info {
+    display: grid;
+    width: 100%;
+    text-transform: uppercase;
+  }
+
+  .step-label {
+    color: var(--purple-200);
+  }
+
+  .step-title {
+    width: 8rem;
+    font-size: var(--txt-xs);
+    font-weight: var(--fw-medium);
+    color: var(--white);
+  }
+
+  .steps {
+    /* align-self: start; */
+    width: 75%;
+    padding-top: 4rem;
+    box-shadow: none;
+    position: relative;
+    top: 0;
+  }
+
+  .form__description {
+    margin-bottom: 1rem;
+  }
+
+  .plans {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .plan {
+    grid-template-columns: 1fr;
+  }
+
+  .form__navigation {
+    align-items: end;
+    padding-inline: 8rem;
+  }
+
+  .confirmation {
+    width: 78%;
+  }
+
+  .confirmation.active {
+    padding: 6rem 2.2rem;
+    align-self: end;
+  }
 }
