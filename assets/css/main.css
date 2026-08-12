@@ -8,7 +8,7 @@ body{
 .multi-step-form {
   display: grid;
   justify-self: center;
-  width: min(100%, 37.5rem);
+  width: min(100%, 375px);
   font-family: var(--ubuntu);
 }
 
@@ -55,7 +55,7 @@ body{
 
 .form {
   display: grid;
-  gap: 4rem;
+  /* gap: 4rem; */
 }
 
 .steps {
@@ -414,8 +414,7 @@ body{
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
-  align-items: center;
-  /* margin-top: auto; */
+  align-self: end;
   padding: 1.8rem;
   background-color: var(--white);
 }
@@ -442,9 +441,14 @@ body{
 
 .button--primary {
   display: grid;
-  justify-self: end;
   color: var(--blue-50);
   background-color: var(--blue-950);
+}
+
+.button--primary,
+.button--confirm {
+  grid-column: 2;
+  justify-self: end;
 }
 
 .button--primary:focus-visible {
@@ -503,15 +507,14 @@ body{
 @media screen and (min-width: 700px) {
   .multi-step-form {
     grid-template-columns: 274px 1fr;
-    width: min(100%, 94rem);
+    width: min(100%, 940px);
     padding: 1.5rem;
     background-color: var(--white);
     border-radius: 1rem;
   }
 
   .sidebar {
-    height: 50rem;
-    /* height: auto; */
+    height: 51.5rem;
     padding: 3rem;
     background: url("/assets/images/bg-sidebar-desktop.svg");
     background-position: center bottom;
@@ -530,7 +533,6 @@ body{
   .nav-step {
     grid-template-columns: auto 1fr;
     gap: 1.5rem;
-    /* width: 100%; */
   }
 
   .step-info {
@@ -551,7 +553,6 @@ body{
   }
 
   .steps {
-    /* align-self: start; */
     width: 75%;
     padding-top: 4rem;
     box-shadow: none;
@@ -573,8 +574,10 @@ body{
   }
 
   .form__navigation {
-    align-items: end;
-    padding-inline: 8rem;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+    margin-inline: auto;
+    padding-inline: 0rem;
   }
 
   .confirmation {
@@ -582,7 +585,11 @@ body{
   }
 
   .confirmation.active {
-    padding: 6rem 2.2rem;
+    padding: 8rem 2.2rem;
     align-self: end;
+  }
+
+  .confirmation__img {
+    width: 7rem;
   }
 }
