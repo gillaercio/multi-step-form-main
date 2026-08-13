@@ -15,7 +15,6 @@ html {
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 400;
-  /* src: url('../fonts/ubuntu-v21-latin-regular.woff2') format('woff2'); */
   src: url('../fonts/Ubuntu-Regular.ttf') format('woff2');
 }
 
@@ -24,7 +23,6 @@ html {
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 500;
-  /* src: url('../fonts/ubuntu-v21-latin-500.woff2') format('woff2'); */
   src: url('../fonts/Ubuntu-Medium.ttf') format('woff2');
 }
 
@@ -33,7 +31,6 @@ html {
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 700;
-  /* src: url('../fonts/ubuntu-v21-latin-700.woff2') format('woff2'); */
   src: url('../fonts/Ubuntu-Bold.ttf') format('woff2');
 }
 
@@ -55,11 +52,8 @@ html {
   --txt-xs: 1.2rem;
   --txt-sm: 1.4rem;
   --txt-md: 1.6rem;
-  --txt-lg: 1.8rem;
   --txt-xl: 2.4rem;
-  --txt-2xl: 3.2rem;
 
-  --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
 

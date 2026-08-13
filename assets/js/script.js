@@ -139,13 +139,13 @@ function clearActiveSteps() {
   formSteps.forEach(step => {
     step.classList.remove("active");
   });
-};
+}
 
 function clearActiveNav() {
   navSteps.forEach(navStep => {
     navStep.classList.remove("active");
   });
-};
+}
 
 function saveSelectedPlan() {
   plans.forEach(planInput => {
